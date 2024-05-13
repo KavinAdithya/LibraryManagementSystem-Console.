@@ -3,6 +3,7 @@ package com.libraray.entity;
 //Annotations
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 /*
@@ -28,7 +29,7 @@ public class Book {
     @ManyToOne
     private Author author;
 
-    @Column(name="Biik_Edition")
+    @Column(name="Book_Edition")
     private String edition;
 
     @Column(name="Book_launched")
@@ -117,5 +118,17 @@ public class Book {
                 ", launchDate=" + launchDate +
                 ", availabilityNumber=" + availabilityNumber +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book book)) return false;
+        return getId() == book.getId() && getAvailabilityNumber() == book.getAvailabilityNumber() && Objects.equals(getName(), book.getName()) && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getEdition(), book.getEdition()) && Objects.equals(getLaunchDate(), book.getLaunchDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getAuthor(), getEdition(), getLaunchDate(), getAvailabilityNumber());
     }
 }

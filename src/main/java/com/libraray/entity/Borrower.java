@@ -1,10 +1,14 @@
 package com.libraray.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Entity
+@Table(name="customer_details")
 public class Borrower {
     @Id
     @Column(name="Borrower_ID")

@@ -7,7 +7,6 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name="Authors")
 public class Author {
     @Column(name="author_name")
     private String authorName;

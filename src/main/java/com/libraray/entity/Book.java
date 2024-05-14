@@ -3,6 +3,7 @@ package com.libraray.entity;
 //Annotations
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -25,7 +26,7 @@ public class Book {
     @Column(name="Book_Name")
     private String name;
 
-    @Column(name="Author_Name")
+
     @ManyToOne
     private Author author;
 
@@ -33,13 +34,14 @@ public class Book {
     private String edition;
 
     @Column(name="Book_launched")
-    private LocalDate launchDate;
+    @Temporal(TemporalType.DATE)
+    private Date launchDate;
     @Column(name="Book_status")
     private int availabilityNumber;
 
 
     //Parameterized Constructor used to initialize the instance states
-    public Book(int id, String name, Author author, String edition, LocalDate launchDate, int availabilityNumber) {
+    public Book(int id, String name, Author author, String edition, Date launchDate, int availabilityNumber) {
         Id = id;
         this.name = name;
         this.author = author;
@@ -91,10 +93,10 @@ public class Book {
     }
 
     //Launched date of particular BOOk
-    public LocalDate getLaunchDate() {
+    public Date getLaunchDate() {
         return launchDate;
     }
-    public void setLaunchDate(LocalDate launchDate) {
+    public void setLaunchDate(Date launchDate) {
         this.launchDate = launchDate;
     }
 

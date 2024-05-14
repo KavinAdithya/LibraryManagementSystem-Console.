@@ -2,7 +2,6 @@ package com.libraray.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -14,45 +13,42 @@ public class Due {
     private CompositeBookAuthor compositeBookAuthor;
 
     @Column(name="Date_Of_Distribution")
-    @Temporal(TemporalType.DATE)
-    private Date dateDistributed;
+    private LocalDate dateDistributed;
 
     @Column(name="Due_Date")
-    @Temporal(TemporalType.DATE)
-    private Date dueDate;
+    private LocalDate dueDate;
 
     @Column(name="returned_date")
-    @Temporal(TemporalType.DATE)
-    private Date returnDate;
+    private LocalDate returnDate;
 
     @Column(name="fine_generated")
     private double fineAmount;
 
 
     //Book Distributed date
-    public Date getDateDistributed() {
+    public LocalDate getDateDistributed() {
         return dateDistributed;
     }
 
-    public void setDateDistributed(Date dateDistributed) {
+    public void setDateDistributed(LocalDate dateDistributed) {
         this.dateDistributed = dateDistributed;
     }
 
     //due date to return the book
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
     //returned date of book by the borrower
-    public Date getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 

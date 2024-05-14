@@ -15,10 +15,9 @@ public class DriverSoftware {
     public static void main(String[] args) {
 
 
-        Configuration config=new Configuration();
-        config.configure().addAnnotatedClass(Author.class);
 
-        SessionFactory sessionFactory= config.buildSessionFactory();
+
+        SessionFactory sessionFactory= Hibernate.getSessionFactory();
 
         Session session=sessionFactory.openSession();
 

@@ -19,7 +19,10 @@ public class Hibernate {
             Configuration configuration =
                     new Configuration()
                             .configure()
-                            .addAnnotatedClass(Author.class);
+                            .addAnnotatedClass(Author.class)
+                            .addAnnotatedClass(Book.class)
+                            .addAnnotatedClass(Borrower.class)
+                            .addAnnotatedClass(Due.class);
 
             ServiceRegistry serviceRegistry =
                     new StandardServiceRegistryBuilder()

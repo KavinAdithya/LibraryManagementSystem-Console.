@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -19,7 +21,6 @@ class AuthorTest {
     Session session;
 
     @BeforeAll
-    @Test
     public void sessionObjectCreation(){
         SessionFactory sessionFactory= Hibernate.getSessionFactory();
 
@@ -29,11 +30,18 @@ class AuthorTest {
     @Test
     public void authorTest(){
         try {
+            LocalDate date=LocalDate.of(2005,3,7);
+            Author author=new Author();
+            author.setAgeOfAuthor(20);
+            author.setAuthorId(19);
+            author.setAuthorName("Kavin_Adithya");
+            author.setCountOfBook(1);
+            author.setCountryName("INDIA");
             book.setName("HeadFirst");
-            book.setAuthor(null);
+            book.setAuthor(author);
             book.setId(19);
             book.setEdition("First editition ");
-            book.setLaunchDate(null);
+            book.setLaunchDate(date);
             book.setAvailabilityNumber(20);
         }catch(Exception e){
             fail("UnExpected Exception... \n "+e);
@@ -41,7 +49,6 @@ class AuthorTest {
     }
 
     @AfterAll
-    @Test
     public void closeTheSession(){
         Transaction trans=session.beginTransaction();
         session.persist(book);

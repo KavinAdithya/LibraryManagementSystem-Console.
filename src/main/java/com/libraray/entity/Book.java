@@ -34,14 +34,13 @@ public class Book {
     private String edition;
 
     @Column(name="Book_launched")
-    @Temporal(TemporalType.DATE)
-    private Date launchDate;
+    private LocalDate launchDate;
     @Column(name="Book_status")
     private int availabilityNumber;
 
 
     //Parameterized Constructor used to initialize the instance states
-    public Book(int id, String name, Author author, String edition, Date launchDate, int availabilityNumber) {
+    public Book(int id, String name, Author author, String edition, LocalDate launchDate, int availabilityNumber) {
         Id = id;
         this.name = name;
         this.author = author;
@@ -93,10 +92,10 @@ public class Book {
     }
 
     //Launched date of particular BOOk
-    public Date getLaunchDate() {
+    public LocalDate getLaunchDate() {
         return launchDate;
     }
-    public void setLaunchDate(Date launchDate) {
+    public void setLaunchDate(LocalDate launchDate) {
         this.launchDate = launchDate;
     }
 

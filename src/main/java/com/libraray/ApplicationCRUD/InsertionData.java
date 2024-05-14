@@ -60,7 +60,7 @@ public class InsertionData {
     public <T>T getData(Class<T> className,int primaryKey){
         try{
             transaction.begin();
-            T persistObject=session.get(className,primaryKey);
+            T persistObject=session.load(className,primaryKey);
             transaction.commit();
             return persistObject;
         }

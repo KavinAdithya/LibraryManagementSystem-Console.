@@ -5,6 +5,10 @@ import com.libraray.entity.Author;
 import com.libraray.entity.Book;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 //Responsible for CRUD operation in database
 public class InsertionData {
@@ -70,4 +74,32 @@ public class InsertionData {
         }
     }
 
+
+    //retrieve data from database query given by the user or developer which means HQL language
+    public <T> List<T> getDataHQL(String query,Class<T> className){
+        try{
+            transaction.begin();
+            Query<T> queryHQl=session.createQuery(query,className);
+            List<T> listOfObjects=queryHQl.getResultList();
+            transaction.commit();
+            return listOfObjects;
+        }catch(Exception e){
+            System.out.println("Failed...To retrieve entity from database");
+            return null;
+        }
+    }
+
+    //retrieve data from database query given by user or developer in SQL syntax
+    public <T>List<T> getDataSQL(String query,Class<T> className){
+        try{
+            transaction.begin();
+            NativeQuery<T> querySQL=session.createNativeQuery(query,className);
+            List<T> listOfObjects=querySQL.getResultList();
+            transaction.commit();
+            return listOfObjects;
+        }catch(Exception e){
+            System.out.println("Failed..To retireve entity from database");
+            return null;
+        }
+    }
 }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import com.libraray.entity.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -87,6 +88,28 @@ class InsertionDataTest {
         if(author1==null)
             fail("Not Possible retrieve entity ");
         System.out.println(author1);
+    }
+
+    @Test
+    public void retrieveHQLTest(){
+        String query="from Author";
+        List<Author> list=data.<Author>getDataHQL(query, Author.class);
+        if(list==null)
+            fail("Failed to load the data from datbase");
+        for(Author author:list)
+            System.out.println(author);
+
+    }
+
+    @Test
+    public void retrieveSQLTest(){
+        String query="select * from Authors";
+        List<Author> list=data.<Author>getDataSQL(query, Author.class);
+        if(list==null)
+            fail("Failed to load the data from datbase");
+        for(Author author:list)
+            System.out.println(author);
+
     }
 
 }

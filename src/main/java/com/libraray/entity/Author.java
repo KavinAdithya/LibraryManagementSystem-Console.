@@ -1,9 +1,8 @@
 package com.libraray.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.libraray.interFace.UserAdminAuthor;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -25,18 +24,21 @@ public class Author{
     @Column(name="country_name")
     private String countryName;
 
+    @OneToOne
+    private UserPassWord passWord;
     //Default Constructor
     public Author(){
         super();
     }
 
     //parameterized constructor
-    public Author(String authorName, int authorId, int countOfBook, int ageOfAuthor, String countryName) {
+    public Author(String authorName, int authorId, int countOfBook, int ageOfAuthor, String countryName,UserPassWord passWord) {
         this.authorName = authorName;
         this.authorId = authorId;
         this.countOfBook = countOfBook;
         this.ageOfAuthor = ageOfAuthor;
         this.countryName = countryName;
+        this.passWord=passWord;
     }
 
 
@@ -89,6 +91,16 @@ public class Author{
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
+
+    //userName and passWord
+    public UserPassWord getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(UserPassWord passWord) {
+        this.passWord = passWord;
+    }
+
     @Override
     public String toString() {
         return "Author{" +

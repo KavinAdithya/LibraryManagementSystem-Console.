@@ -1,9 +1,6 @@
 package com.libraray.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -26,6 +23,8 @@ public class Borrower {
     @Column(name="address_of_borrower")
     private String addressOfBorrower;
 
+    @OneToOne
+    private UserPassWord userPassWord;
 
     //Borrower Id
     public int getBorrowerId() {
@@ -72,6 +71,14 @@ public class Borrower {
 
     public void setAddressOfBorrower(String addressOfBorrower) {
         this.addressOfBorrower = addressOfBorrower;
+    }
+
+    public UserPassWord getUserPassWord() {
+        return userPassWord;
+    }
+
+    public void setUserPassWord(UserPassWord userPassWord) {
+        this.userPassWord = userPassWord;
     }
 
     @Override

@@ -12,13 +12,14 @@ import org.hibernate.service.internal.AbstractServiceRegistryImpl;
 
 public class Hibernate {
     private static final SessionFactory sessionFactory =buildSessionFactory();
-    //method Which is responsible for Creating an session factory from configuration
+    //method Which is responsible for Creating a session factory from configuration
     private static SessionFactory buildSessionFactory(){
-        //Configuration Object which reads the configuration file and generate meta data to Session factory
+        //Configuration Object which reads the configuration file and generate metadata to Session factory
         try {
             Configuration configuration =
                     new Configuration()
                             .configure()
+                            .addAnnotatedClass(UserPassWord.class)
                             .addAnnotatedClass(Author.class)
                             .addAnnotatedClass(Book.class)
                             .addAnnotatedClass(Borrower.class)

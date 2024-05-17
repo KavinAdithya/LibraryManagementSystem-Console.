@@ -41,7 +41,7 @@ public class InsertionData {
             return true;
         }
         catch(Exception e){
-            System.out.println("Failed... to insert the data into database!!!");
+            System.out.println("Failed... to insert the data into database!!!"+e);
             return false;
         }
     }
@@ -55,7 +55,7 @@ public class InsertionData {
             return true;
         }
         catch(Exception e){
-            System.out.println("Failed...To delete entity from database");
+            System.out.println("Failed...To delete entity from database"+e);
             return false;
         }
     }
@@ -69,7 +69,7 @@ public class InsertionData {
             return persistObject;
         }
         catch(Exception e){
-            System.out.println("Failed...To retrieve entity from database");
+            System.out.println("Failed...To retrieve entity from database"+e);
             return null;
         }
     }
@@ -84,7 +84,7 @@ public class InsertionData {
             transaction.commit();
             return listOfObjects;
         }catch(Exception e){
-            System.out.println("Failed...To retrieve entity from database");
+            System.out.println("Failed...To retrieve entity from database"+e);
             return null;
         }
     }

@@ -1,30 +1,29 @@
 package com.libraray.entity;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
 @Entity
-@Table(name="customer_details")
+@Table(name = "customer_details")
 public class Borrower {
     @Id
-    @Column(name="Borrower_ID")
+    @Column(name = "Borrower_ID")
     private int borrowerId;
 
-    @Column(name="Borrower_name")
+    @Column(name = "Borrower_name")
     private String nameOfBorrower;
 
-    @Column(name="age_of_borrower")
+    @Column(name = "age_of_borrower")
     private int ageOfBorrower;
 
-    @Column(name="adhaar_Number")
+    @Column(name = "adhaar_Number")
     private String adhaarNumber;
 
-    @Column(name="address_of_borrower")
+    @Column(name = "address_of_borrower")
     private String addressOfBorrower;
 
-    @OneToOne
-    private UserPassWord userPassWord;
+
 
     //Borrower Id
     public int getBorrowerId() {
@@ -73,13 +72,6 @@ public class Borrower {
         this.addressOfBorrower = addressOfBorrower;
     }
 
-    public UserPassWord getUserPassWord() {
-        return userPassWord;
-    }
-
-    public void setUserPassWord(UserPassWord userPassWord) {
-        this.userPassWord = userPassWord;
-    }
 
     @Override
     public String toString() {

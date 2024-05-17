@@ -1,17 +1,16 @@
 package com.libraray.dataBase;
 
-import com.libraray.entity.*;
-import org.hibernate.Session;
+import com.libraray.entity.Author;
+import com.libraray.entity.Book;
+import com.libraray.entity.User;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.internal.AbstractServiceRegistryImpl;
 
 
 public class Hibernate {
-    private static final SessionFactory sessionFactory =buildSessionFactory();
+    private static final SessionFactory sessionFactory = buildSessionFactory();
     //method Which is responsible for Creating a session factory from configuration
     private static SessionFactory buildSessionFactory(){
         //Configuration Object which reads the configuration file and generate metadata to Session factory
@@ -19,11 +18,9 @@ public class Hibernate {
             Configuration configuration =
                     new Configuration()
                             .configure()
-                            .addAnnotatedClass(UserPassWord.class)
+                            .addAnnotatedClass(User.class)
                             .addAnnotatedClass(Author.class)
-                            .addAnnotatedClass(Book.class)
-                            .addAnnotatedClass(Borrower.class)
-                            .addAnnotatedClass(Due.class);
+                            .addAnnotatedClass(Book.class);
 
             ServiceRegistry serviceRegistry =
                     new StandardServiceRegistryBuilder()

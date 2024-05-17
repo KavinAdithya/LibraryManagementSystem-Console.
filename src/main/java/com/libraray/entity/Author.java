@@ -1,8 +1,10 @@
 package com.libraray.entity;
 
-import com.libraray.interFace.UserAdminAuthor;
 
-import javax.persistence.*;
+
+import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +15,7 @@ public class Author{
 
     @Id
     @Column(name="author_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int authorId;
 
     @Column(name="Number_Of_Books")
@@ -25,22 +28,32 @@ public class Author{
     private String countryName;
 
     @OneToOne
-    private UserPassWord passWord;
+    @JoinColumn(name="login")
+    private User passWord;
+
+    @OneToMany(mappedBy = "author")
+    private List<Book> books;
     //Default Constructor
     public Author(){
         super();
     }
 
     //parameterized constructor
-    public Author(String authorName, int authorId, int countOfBook, int ageOfAuthor, String countryName,UserPassWord passWord) {
+    public Author(String authorName, int authorId, int countOfBook, int ageOfAuthor, String countryName) {
         this.authorName = authorName;
         this.authorId = authorId;
         this.countOfBook = countOfBook;
         this.ageOfAuthor = ageOfAuthor;
         this.countryName = countryName;
-        this.passWord=passWord;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 
     //incrementing the book published count by 1
     public void incrementBooksCount(){
@@ -93,11 +106,11 @@ public class Author{
     }
 
     //userName and passWord
-    public UserPassWord getPassWord() {
+    public User getPassWord() {
         return passWord;
     }
 
-    public void setPassWord(UserPassWord passWord) {
+    public void setPassWord(User passWord) {
         this.passWord = passWord;
     }
 

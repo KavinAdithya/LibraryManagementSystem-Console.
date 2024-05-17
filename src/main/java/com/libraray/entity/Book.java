@@ -1,9 +1,8 @@
 package com.libraray.entity;
 
 //Annotations
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
 
@@ -16,26 +15,27 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name="Books")
+@Table(name = "Books")
 public class Book {
 
     @Id
-    @Column(name="Book_ID")
+    @Column(name = "Book_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
-    @Column(name="Book_Name")
+    @Column(name = "Book_Name")
     private String name;
 
 
     @ManyToOne
     private Author author;
 
-    @Column(name="Book_Edition")
+    @Column(name = "Book_Edition")
     private String edition;
 
-    @Column(name="Book_launched")
+    @Column(name = "Book_launched")
     private LocalDate launchDate;
-    @Column(name="Book_status")
+    @Column(name = "Book_status")
     private int availabilityNumber;
 
 

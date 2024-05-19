@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Table(name="Security")
 public class User {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Security")
     private int securityId;
 
@@ -16,7 +16,7 @@ public class User {
     private String password;
 
 
-    //Unique Securiry ID
+    //Unique Security ID
     public int getSecurityId() {
         return securityId;
     }

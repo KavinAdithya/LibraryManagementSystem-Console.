@@ -13,21 +13,29 @@ import java.util.List;
  */
 public class LoginDataManager {
 
+    private final InsertionData persist = new InsertionData();
     private final User user;
-    private String userName;
+    private final String userName;
 
-    private String passWord;
+    private final String passWord;
 
     public LoginDataManager(User user){
         this.user = user;
+        this.userName = user.getUserName();
+        this.passWord = user.getPassword();
     }
 
+    //getter for user object
+    public User getUser() {
+        return user;
+    }
 
     //Method which will take care of checking the dat is consistent
-    public void checkUser() throws LibraryException {
+    public boolean checkUser() throws LibraryException {
         try{
             if(checkLength(userName,10) || checkUserExist())
-                throw new LibraryException("Minimum length is required.. You failed to provide It");
+                throw new LibraryException("Provided does not satisfy  our criteria.. You failed to provide It");
+            return true;
         }catch(Exception e){
             throw new LibraryException(e.getMessage());
         }
@@ -36,28 +44,26 @@ public class LoginDataManager {
 
     //checks the length and given string length is greater than or equal  to
     private boolean checkLength(String string,int length) throws Exception{
-        if(string.length() >= length)
-            return false;
-        return true;
+        return string.length() < length;
     }
 
 
     //Method checks whether user exists already
     private boolean checkUserExist()  throws Exception{
         InsertionData persist = new InsertionData();
+        String query = "from User where userName = '"+userName+"'";
+        System.out.println(query);
 
-        List<User> user = persist.<User>getDataHQL("from user where userName = "+userName, User.class);
-
-        if(user == null)
-            return false;
-        return true;
+        List<User> user = persist.<User>getDataHQL(query, User.class);
+        return !user.isEmpty();
     }
 
     //method responsible to handle the password operation
-    public void checkPassword() throws LibraryException{
+    public boolean checkPassword() throws LibraryException{
         try{
             if(checkLength(passWord,8) || checkCharacters())
                 throw new LibraryException("Password is too weak ...");
+            return true;
         }catch(Exception e){
             throw new LibraryException(e.getMessage());
         }

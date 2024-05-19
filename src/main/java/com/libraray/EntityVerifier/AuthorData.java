@@ -41,7 +41,8 @@ public class AuthorData extends Validater{
     //checking the book exists if not persist the book
     private void persistBook() throws LibraryException{
         try{
-
+            checkBook();
+            persistBooks();
         }catch(Exception e){
             throw new LibraryException(e.getMessage());
         }

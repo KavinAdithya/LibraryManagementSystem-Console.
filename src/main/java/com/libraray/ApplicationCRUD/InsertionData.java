@@ -12,9 +12,9 @@ import java.util.List;
 
 //Responsible for CRUD operation in database
 public class InsertionData {
-    private final Session session= Hibernate.getSessionFactory().openSession();
+    private final Session session = Hibernate.getSessionFactory().openSession();
 
-    private final Transaction transaction= session.getTransaction();
+    private final Transaction transaction = session.getTransaction();
 
     /*
         *Method which is responsible to insert tha data into database Entity does not matter

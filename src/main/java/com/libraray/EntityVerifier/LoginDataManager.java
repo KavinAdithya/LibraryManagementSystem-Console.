@@ -1,0 +1,91 @@
+package com.libraray.EntityVerifier;
+
+import com.libraray.ApplicationCRUD.InsertionData;
+import com.libraray.entity.User;
+import com.libraray.interFace.LibraryException;
+
+import java.util.List;
+
+/*
+    *This class is responsible to validate the username and password
+    * It will fetch the database it will check whether username already exists, and it will also check whether
+    * the password is secured
+ */
+public class LoginDataManager {
+
+    private final User user;
+    private String userName;
+
+    private String passWord;
+
+    public LoginDataManager(User user){
+        this.user = user;
+    }
+
+
+    //Method which will take care of checking the dat is consistent
+    public void checkUser() throws LibraryException {
+        try{
+            if(checkLength(userName,10) || checkUserExist())
+                throw new LibraryException("Minimum length is required.. You failed to provide It");
+        }catch(Exception e){
+            throw new LibraryException(e.getMessage());
+        }
+    }
+
+
+    //checks the length and given string length is greater than or equal  to
+    private boolean checkLength(String string,int length) throws Exception{
+        if(string.length() >= length)
+            return false;
+        return true;
+    }
+
+
+    //Method checks whether user exists already
+    private boolean checkUserExist()  throws Exception{
+        InsertionData persist = new InsertionData();
+
+        List<User> user = persist.<User>getDataHQL("from user where userName = "+userName, User.class);
+
+        if(user == null)
+            return false;
+        return true;
+    }
+
+    //method responsible to handle the password operation
+    public void checkPassword() throws LibraryException{
+        try{
+            if(checkLength(passWord,8) || checkCharacters())
+                throw new LibraryException("Password is too weak ...");
+        }catch(Exception e){
+            throw new LibraryException(e.getMessage());
+        }
+    }
+
+
+    private boolean checkCharacters(){
+        int capsAlpha = 0;
+        int smallAlpha = 0;
+        int numerics =  0;
+        int specialCharacter = 0;
+
+        for(char character : passWord.toCharArray()){
+            if(character == ' ')
+                return true;
+            if(character >= 'a' && character <= 'z')
+                smallAlpha++;
+            else if(character >= 'A' && character <= 'Z')
+                capsAlpha++;
+            else if(character >= '0' && character <= '9')
+                numerics++;
+            else
+                specialCharacter++;
+        }
+
+       if(capsAlpha >= 1 && smallAlpha >= 1 && numerics >= 1 && specialCharacter >= 1)
+           return false;
+       return true;
+
+    }
+}

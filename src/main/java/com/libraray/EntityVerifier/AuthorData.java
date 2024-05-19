@@ -9,11 +9,18 @@ import com.libraray.entity.Author;
 public class AuthorData {
     private Author author;
 
+    private LoginDataManager login = new LoginDataManager(author.getPassWord());
+
+    private Validater valid =
+            new Validater();
+
     public AuthorData(Author author){
         this.author=author;
     }
 
-
+    public boolean checking(){
+     return true;
+    }
 
 
 }

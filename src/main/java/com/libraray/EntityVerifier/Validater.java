@@ -50,4 +50,54 @@ public class Validater {
         }
         return false;
     }
+
+    //method is used to invoke the method og checkAe if
+    //the age is valid then it will not generate exception
+    public void ageInvoker(int age) throws LibraryException{
+        try{
+            if(!checkAge(age))
+                throw new Exception("Age is Not Valid");
+        }
+        catch(Exception e){
+            throw new LibraryException("Age is Not Valid");
+        }
+    }
+
+
+    //method checking the age is valid or not
+    private boolean checkAge(int age){
+        if(age > 0 && age < 110)
+            return true;
+        return false;
+    }
+
+    //given count book is positive or not checker
+    private boolean checkBook(int countBook){
+        if(countBook>1)
+            return false;
+        return true;
+    }
+
+
+    //check the Aadhaar is valid or not
+    public String checkAadhaar(String aadhaarNumber){
+        if(aadhaarNumber.length() != 12)
+            return null;
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(int k = 0; k < 12; k++){
+            char character = aadhaarNumber.charAt(k);
+            if(k == 4 || k == 8)
+                stringBuilder.append(' ');
+            if(character >= '0' && character <= '9')
+                stringBuilder.append(character);
+            else
+                return null;
+        }
+
+        return stringBuilder.toString();
+
+
+    }
 }

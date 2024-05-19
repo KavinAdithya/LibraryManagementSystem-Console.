@@ -64,7 +64,7 @@ public class InsertionData {
     public <T>T getData(Class<T> className,int primaryKey){
         try{
             transaction.begin();
-            T persistObject=session.load(className,primaryKey);
+            T persistObject = session.load(className,primaryKey);
             transaction.commit();
             return persistObject;
         }
@@ -79,8 +79,8 @@ public class InsertionData {
     public <T> List<T> getDataHQL(String query,Class<T> className){
         try{
             transaction.begin();
-            Query<T> queryHQl=session.createQuery(query,className);
-            List<T> listOfObjects=queryHQl.getResultList();
+            Query<T> queryHQl = session.createQuery(query,className);
+            List<T> listOfObjects = queryHQl.getResultList();
             transaction.commit();
             return listOfObjects;
         }catch(Exception e){
@@ -93,8 +93,8 @@ public class InsertionData {
     public <T>List<T> getDataSQL(String query,Class<T> className){
         try{
             transaction.begin();
-            NativeQuery<T> querySQL=session.createNativeQuery(query,className);
-            List<T> listOfObjects=querySQL.getResultList();
+            NativeQuery<T> querySQL = session.createNativeQuery(query,className);
+            List<T> listOfObjects = querySQL.getResultList();
             transaction.commit();
             return listOfObjects;
         }catch(Exception e){

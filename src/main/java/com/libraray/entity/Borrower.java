@@ -9,6 +9,7 @@ import java.util.Objects;
 public class Borrower {
     @Id
     @Column(name = "Borrower_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int borrowerId;
 
     @Column(name = "Borrower_name")

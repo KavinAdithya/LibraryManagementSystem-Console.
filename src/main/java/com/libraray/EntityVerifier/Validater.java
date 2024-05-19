@@ -1,9 +1,14 @@
 package com.libraray.EntityVerifier;
 
+import com.libraray.entity.User;
 import com.libraray.interFace.LibraryException;
 
-public class Validater {
+public class Validater extends LoginDataManager{
     private String name;
+
+    public Validater(User user) {
+        super(user);
+    }
 
     public String getName() {
         return name;
@@ -72,7 +77,7 @@ public class Validater {
     }
 
     //given count book is positive or not checker
-    private boolean checkBook(int countBook){
+    public boolean checkBook(int countBook){
         if(countBook>1)
             return false;
         return true;

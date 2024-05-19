@@ -9,7 +9,7 @@ class ValidaterTest {
 
     @Test
     void nameValidate() throws Exception {
-        Validater validater = new Validater();
+        Validater validater = new Validater(null);
 
       try{
           validater.nameValidate("                                         Kavin     Adithya     Dharani    ");

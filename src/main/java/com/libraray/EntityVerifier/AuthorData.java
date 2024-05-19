@@ -5,6 +5,7 @@ import com.libraray.entity.Author;
 import com.libraray.entity.Book;
 import com.libraray.interFace.LibraryException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -30,8 +31,13 @@ public class AuthorData extends Validater{
             nameValidate(author.getAuthorName());
             ageInvoker(author.getAgeOfAuthor());
             checkBook(author.getCountOfBook());
-            persistBook();
-            persist.<Author>insertData(author);
+
+            List<Object> entities = new ArrayList<>();
+            entities.add(author.getPassWord());
+            entities.add(author);
+            entities.addAll(books);
+
+            persist.insertListEntity(entities);
             return true;
         }catch(Exception e) {
             throw new LibraryException("Author Not Valid..Provide proper information... \n"+e.getMessage());

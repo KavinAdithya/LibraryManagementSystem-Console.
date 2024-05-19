@@ -26,7 +26,7 @@ class LoginDataManagerTest {
     void checkPassword()  throws LibraryException {
 
         user.setSecurityId(1);
-        user.setPassword("KavinDharani@3");
+        user.setPassword("KAVINDHARANi@3");
         user.setUserName("KavinAdithya");
         data = new LoginDataManager(user);
         assertTrue(data.checkPassword());

@@ -1,5 +1,6 @@
 package com.libraray.ApplicationCRUD;
 
+import com.libraray.interFace.DataLibraryException;
 import org.junit.jupiter.api.Test;
 import com.libraray.entity.*;
 
@@ -63,7 +64,7 @@ class InsertionDataTest {
     }
 
     @Test
-    public void updateEntityTest(){
+    public void updateEntityTest() throws DataLibraryException {
         author.setAuthorName("KaVinDharani");
         author.setCountryName("USA");
         author.setAuthorId(43);
@@ -73,7 +74,7 @@ class InsertionDataTest {
     }
 
     @Test
-    public void deleteEntityTest(){
+    public void deleteEntityTest() throws DataLibraryException {
         author.setAuthorName("KaVin");
         author.setCountryName("USA");
         author.setAuthorId(43);
@@ -83,7 +84,7 @@ class InsertionDataTest {
     }
 
     @Test
-    public void retrieveEntityTest(){
+    public void retrieveEntityTest() throws DataLibraryException {
         Author author1=data.<Author>getData(Author.class,19);
         if(author1==null)
             fail("Not Possible retrieve entity ");
@@ -91,7 +92,7 @@ class InsertionDataTest {
     }
 
     @Test
-    public void retrieveHQLTest(){
+    public void retrieveHQLTest() throws DataLibraryException {
         String query="from Author";
         List<Author> list=data.<Author>getDataHQL(query, Author.class);
         if(list==null)
@@ -102,7 +103,7 @@ class InsertionDataTest {
     }
 
     @Test
-    public void retrieveSQLTest(){
+    public void retrieveSQLTest() throws DataLibraryException {
         String query="select * from Authors";
         List<Author> list=data.<Author>getDataSQL(query, Author.class);
         if(list==null)

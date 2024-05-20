@@ -3,10 +3,10 @@ package com.libraray.EntityVerifier;
 import com.libraray.entity.User;
 import com.libraray.interFace.LibraryException;
 
-public class Validater extends LoginDataManager{
+public class Validate extends LoginDataManager{
     private String name;
 
-    public Validater(User user) {
+    public Validate(User user) {
         super(user);
     }
 
@@ -71,18 +71,8 @@ public class Validater extends LoginDataManager{
 
     //method checking the age is valid or not
     private boolean checkAge(int age){
-        if(age > 0 && age < 110)
-            return true;
-        return false;
+        return age > 0 && age < 110;
     }
-
-    //given count book is positive or not checker
-    public boolean checkBook(int countBook){
-        if(countBook>1)
-            return false;
-        return true;
-    }
-
 
     //check the Aadhaar is valid or not
     public String checkAadhaar(String aadhaarNumber){

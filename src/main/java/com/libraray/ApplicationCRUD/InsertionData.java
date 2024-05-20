@@ -1,9 +1,8 @@
 package com.libraray.ApplicationCRUD;
 
 import com.libraray.dataBase.Hibernate;
-import com.libraray.entity.Author;
-import com.libraray.entity.Book;
 import com.libraray.interFace.DataLibraryException;
+import com.libraray.interFace.LibraryException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
@@ -12,6 +11,7 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 //Responsible for CRUD operation in database
+@SuppressWarnings("deprecation")
 public class InsertionData {
     private final Session session = Hibernate.getSessionFactory().openSession();
 
@@ -29,7 +29,6 @@ public class InsertionData {
             return true;
         }
         catch(Exception e){
-            System.out.println("Failed...Inserting Data!!! \n"+e);
             return false;
         }
     }
@@ -42,12 +41,12 @@ public class InsertionData {
             return true;
         }
         catch(Exception e){
-            throw new DataLibraryException("Failed... to insert the data into database!!!\n"+e.getMessage());
+            return false;
         }
     }
 
     //method which is responsible to delete the entity from database
-    public <T>boolean deleteData(T persistObject) throws DataLibraryException{
+    public <T>boolean deleteData(T persistObject){
         try{
             transaction.begin();
             session.delete(persistObject);
@@ -55,12 +54,12 @@ public class InsertionData {
             return true;
         }
         catch(Exception e){
-            throw new DataLibraryException("Failed... to delete the data into database!!!\n"+e.getMessage());
+            return false;
         }
     }
 
     //method which is responsible for retrieve entity from database
-    public <T>T getData(Class<T> className,int primaryKey) throws DataLibraryException{
+    public <T>T getData(Class<T> className,int primaryKey){
         try{
             transaction.begin();
             T persistObject = session.load(className,primaryKey);
@@ -68,13 +67,13 @@ public class InsertionData {
             return persistObject;
         }
         catch(Exception e){
-            throw new DataLibraryException("Failed... to retrieve the data from database!!!\n"+e.getMessage());
+            return null;
         }
     }
 
 
     //retrieve data from database query given by the user or developer which means HQL language
-    public <T> List<T> getDataHQL(String query,Class<T> className) throws DataLibraryException{
+    public <T> List<T> getDataHQL(String query,Class<T> className){
         try{
             transaction.begin();
             Query<T> queryHQl = session.createQuery(query,className);
@@ -82,12 +81,12 @@ public class InsertionData {
             transaction.commit();
             return listOfObjects;
         }catch(Exception e){
-            throw new DataLibraryException("Failed... to retrieve the data into database!!!\n"+e.getMessage());
+            return null;
         }
     }
 
     //retrieve data from database query given by user or developer in SQL syntax
-    public <T>List<T> getDataSQL(String query,Class<T> className) throws DataLibraryException{
+    public <T>List<T> getDataSQL(String query,Class<T> className) {
         try{
             transaction.begin();
             NativeQuery<T> querySQL = session.createNativeQuery(query,className);
@@ -95,11 +94,11 @@ public class InsertionData {
             transaction.commit();
             return listOfObjects;
         }catch(Exception e){
-            throw new DataLibraryException("Failed... to retrieve the data into database!!!\n"+e.getMessage());
+            return null;
         }
     }
 
-    public boolean insertListEntity(List<?> persistObjects) throws DataLibraryException {
+    public boolean insertListEntity(List<?> persistObjects)  {
         try{
             transaction.begin();
 
@@ -109,7 +108,16 @@ public class InsertionData {
             transaction.commit();
             return true;
         }catch(Exception e){
-            throw new DataLibraryException("Failed to persist in the entities in the dataBase "+e.getMessage());
+           return false;
+        }
+    }
+
+    public boolean shutDownFactory(){
+        try {
+            Hibernate.shutDownSessionFactory();
+            return false;
+        }catch(Exception e){
+            return false;
         }
     }
 }

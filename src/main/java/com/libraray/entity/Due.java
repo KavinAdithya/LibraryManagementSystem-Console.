@@ -8,7 +8,6 @@ import java.util.Objects;
 @Table(name="Book_Distribution")
 public class Due {
 
-
     @EmbeddedId
     private CompositeBookAuthor compositeBookAuthor;
 
@@ -21,9 +20,20 @@ public class Due {
     @Column(name="returned_date")
     private LocalDate returnDate;
 
+    @Column(name = "late_submission_days")
+    private int noOfDays;
+
     @Column(name="fine_generated")
     private double fineAmount;
 
+    //No of days late submission
+    public int getNoOfDays() {
+        return noOfDays;
+    }
+
+    public void setNoOfDays(int noOfDays) {
+        this.noOfDays = noOfDays;
+    }
 
     //Book Distributed date
     public LocalDate getDateDistributed() {
@@ -53,7 +63,6 @@ public class Due {
     }
 
     //If the borrower late submission and so fine amount generated
-
     public double getFineAmount() {
         return fineAmount;
     }
@@ -67,7 +76,6 @@ public class Due {
         return compositeBookAuthor;
     }
 
-
     public void setCompositeBookAuthor(CompositeBookAuthor compositeBookAuthor) {
         this.compositeBookAuthor = compositeBookAuthor;
     }
@@ -76,7 +84,11 @@ public class Due {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Due due)) return false;
-        return Double.compare(getFineAmount(), due.getFineAmount()) == 0 && Objects.equals(getCompositeBookAuthor(), due.getCompositeBookAuthor()) && Objects.equals(getDateDistributed(), due.getDateDistributed()) && Objects.equals(getDueDate(), due.getDueDate()) && Objects.equals(getReturnDate(), due.getReturnDate());
+        return Double.compare(getFineAmount(), due.getFineAmount()) == 0 &&
+                Objects.equals(getCompositeBookAuthor(), due.getCompositeBookAuthor()) &&
+                Objects.equals(getDateDistributed(), due.getDateDistributed()) &&
+                Objects.equals(getDueDate(), due.getDueDate()) &&
+                Objects.equals(getReturnDate(), due.getReturnDate());
     }
 
     @Override
@@ -91,6 +103,7 @@ public class Due {
                 ", dateDistributed=" + dateDistributed +
                 ", dueDate=" + dueDate +
                 ", returnDate=" + returnDate +
+                ", noOfDays=" + noOfDays +
                 ", fineAmount=" + fineAmount +
                 '}';
     }

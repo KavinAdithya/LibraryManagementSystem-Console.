@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import com.libraray.entity.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -113,4 +114,26 @@ class InsertionDataTest {
 
     }
 
+    @Test
+    void insertListEntity() throws DataLibraryException {
+        List<Object> entities = new ArrayList<Object>();
+
+        User user = new User();
+            user.setUserName("kkkk");
+            user.setPassword("mdjkdkdk");
+
+        entities.add(user);
+
+        Author author = new Author();
+            author.setBooks(null);
+            author.setPassWord(null);
+            author.setCountryName("USA");
+            author.setAgeOfAuthor(90);
+            author.setAuthorName("John");
+            author.setCountOfBook(2);
+
+        entities.add(author);
+
+        assertTrue(data.insertListEntity(entities));
+    }
 }

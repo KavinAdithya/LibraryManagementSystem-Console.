@@ -1,8 +1,6 @@
 package com.libraray.dataBase;
 
-import com.libraray.entity.Author;
-import com.libraray.entity.Book;
-import com.libraray.entity.User;
+import com.libraray.entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -18,7 +16,11 @@ public class Hibernate {
             Configuration configuration =
                     new Configuration()
                             .configure()
-                            .addAnnotatedClass(User.class);
+                            .addAnnotatedClass(User.class)
+                            .addAnnotatedClass(Book.class)
+                            .addAnnotatedClass(Author.class)
+                            .addAnnotatedClass(Borrower.class)
+                            .addAnnotatedClass(Due.class);
 
             ServiceRegistry serviceRegistry =
                     new StandardServiceRegistryBuilder()
@@ -39,7 +41,7 @@ public class Hibernate {
     }
 
     //Used to close the session factory object
-    private static void shutDownSessionFactory(){
+    public  static void shutDownSessionFactory(){
         sessionFactory.close();
     }
 }

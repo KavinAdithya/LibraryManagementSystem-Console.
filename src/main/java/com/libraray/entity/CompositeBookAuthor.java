@@ -1,5 +1,7 @@
 package com.libraray.entity;
 
+import org.hibernate.metamodel.model.domain.internal.MapMember;
+
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
@@ -9,7 +11,7 @@ public class CompositeBookAuthor implements Serializable {
     @ManyToOne
     private Book bookDistributed;
     @ManyToOne
-    private Borrower bookBorrower;
+    private Members bookMember;
 
     public Book getBookDistributed() {
         return bookDistributed;
@@ -19,11 +21,11 @@ public class CompositeBookAuthor implements Serializable {
         this.bookDistributed = bookDistributed;
     }
 
-    public Borrower getBookBorrower() {
-        return bookBorrower;
+    public Members getBookMember() {
+        return bookMember;
     }
 
-    public void setBookBorrower(Borrower bookBorrower) {
-        this.bookBorrower = bookBorrower;
+    public void setBookMember(Members bookMember) {
+        this.bookMember = bookMember;
     }
 }

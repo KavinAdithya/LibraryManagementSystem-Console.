@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class InsertionDataTest {
     Book book=new Book();
     Author author=new Author();
-    Borrower borrower=new Borrower();
+    Members borrower=new Members();
 
     CompositeBookAuthor cba=new CompositeBookAuthor();
     Due due=new Due();
@@ -41,11 +41,11 @@ class InsertionDataTest {
 
     @Test
     public void updateBorrower(){
-        borrower.setAgeOfBorrower(78);
-        borrower.setBorrowerId(23);
-        borrower.setNameOfBorrower("Romeo");
-        borrower.setAdhaarNumber("5674 2341 7894");
-        borrower.setAddressOfBorrower("Ukarine");
+//        borrower.setAgeOfBorrower(78);
+//        borrower.setBorrowerId(23);
+//        borrower.setNameOfBorrower("Romeo");
+//        borrower.setAdhaarNumber("5674 2341 7894");
+//        borrower.setAddressOfBorrower("Ukarine");
         //assertTrue(data.<Borrower>insertData(borrower));
     }
 
@@ -54,7 +54,7 @@ class InsertionDataTest {
         updateData();
         updateBorrower();
         cba.setBookDistributed(book);
-        cba.setBookBorrower(borrower);
+        //cba.setBookBorrower(borrower);
         due.setCompositeBookAuthor(cba);
         LocalDate date=LocalDate.of(1999,5,4);
         due.setDueDate(date);

@@ -129,5 +129,4 @@ public class Members {
                 Objects.equals(getAddressOfMember(), members.getAddressOfMember()) &&
                 Objects.equals(getUser(), members.getUser());
     }
-
 }

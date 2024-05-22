@@ -1,8 +1,6 @@
 package com.libraray.ApplicationCRUD;
 
 import com.libraray.dataBase.Hibernate;
-import com.libraray.interFace.DataLibraryException;
-import com.libraray.interFace.LibraryException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
@@ -21,26 +19,36 @@ public class InsertionData {
         *Method which is responsible to insert tha data into database Entity does not matter
         * because we used the type as generic
      */
+
+    public Session getSession() {
+        return session;
+    }
+
     public <T>boolean insertData(T persistObject){
         try {
             transaction.begin();
             session.persist(persistObject);
             transaction.commit();
+            session.detach(persistObject);
             return true;
         }
         catch(Exception e){
+            e.fillInStackTrace();
             return false;
         }
     }
+
     //Method responsible to update the existing data into thw database
-    public <T>boolean updateData(T persistObject) throws DataLibraryException{
+    public <T>boolean updateData(T persistObject){
         try{
             transaction.begin();
             session.update(persistObject);
             transaction.commit();
+            session.detach(persistObject);
             return true;
         }
         catch(Exception e){
+            e.printStackTrace();
             return false;
         }
     }
@@ -51,9 +59,11 @@ public class InsertionData {
             transaction.begin();
             session.delete(persistObject);
             transaction.commit();
+            session.detach(persistObject);
             return true;
         }
         catch(Exception e){
+            e.fillInStackTrace();
             return false;
         }
     }
@@ -67,6 +77,21 @@ public class InsertionData {
             return persistObject;
         }
         catch(Exception e){
+            e.fillInStackTrace();
+            return null;
+        }
+    }
+
+    public <T>T getDataEager(Class<T> className,int primaryKey){
+        try{
+            transaction.begin();
+            T persistObject = session.get(className,primaryKey);
+            transaction.commit();
+            session.detach(persistObject);
+            return persistObject;
+        }
+        catch(Exception e){
+            e.fillInStackTrace();
             return null;
         }
     }
@@ -81,6 +106,7 @@ public class InsertionData {
             transaction.commit();
             return listOfObjects;
         }catch(Exception e){
+            e.fillInStackTrace();
             return null;
         }
     }
@@ -94,6 +120,7 @@ public class InsertionData {
             transaction.commit();
             return listOfObjects;
         }catch(Exception e){
+            e.fillInStackTrace();
             return null;
         }
     }

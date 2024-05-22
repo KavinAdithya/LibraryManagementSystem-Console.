@@ -3,10 +3,10 @@ package com.libraray.EntityVerifier;
 import com.libraray.entity.User;
 import com.libraray.interFace.LibraryException;
 
-public class Validate extends LoginDataManager{
+public class Validates extends LoginDataManager implements com.libraray.interFace.Validate {
     private String name;
 
-    public Validate(User user) {
+    public Validates(User user) {
         super(user);
     }
 
@@ -15,7 +15,7 @@ public class Validate extends LoginDataManager{
     }
 
     //Name Validating
-    protected void nameValidate(String name) throws LibraryException {
+    public void nameValidate(String name) throws LibraryException {
         try{
             if(checkValidCharacters(name) || trimTheName(name))
                 throw new NullPointerException();

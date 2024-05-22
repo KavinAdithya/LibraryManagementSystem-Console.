@@ -23,7 +23,8 @@ public class Members {
     @Column(name = "address_of_member")
     private String addressOfMember;
 
-    @Column(name = "login")
+    @JoinColumn(name = "login")
+    @OneToOne
     private User user;
 
     @Column(name = "fine_allowed")

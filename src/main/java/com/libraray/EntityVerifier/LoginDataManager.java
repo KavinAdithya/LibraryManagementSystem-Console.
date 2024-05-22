@@ -3,6 +3,7 @@ package com.libraray.EntityVerifier;
 import com.libraray.ApplicationCRUD.InsertionData;
 import com.libraray.entity.User;
 import com.libraray.interFace.LibraryException;
+import com.libraray.interFace.Login;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
     * It will fetch the database it will check whether username already exists, and it will also check whether
     * the password is secured
  */
-public class LoginDataManager {
+public class LoginDataManager implements Login {
 
     private final InsertionData persist = new InsertionData();
     private final User user;

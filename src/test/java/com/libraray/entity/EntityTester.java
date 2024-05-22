@@ -22,7 +22,7 @@ class EntityTester {
     List<Book> books = new ArrayList<>();
     Due due = new Due();
 
-    Borrower borrower = new Borrower();
+    Members borrower = new Members();
 
     @BeforeAll
     public void dataInsertionOfAuthor(){

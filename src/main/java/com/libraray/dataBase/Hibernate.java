@@ -17,9 +17,9 @@ public class Hibernate {
                     new Configuration()
                             .configure()
                             .addAnnotatedClass(User.class)
-                            .addAnnotatedClass(Book.class)
                             .addAnnotatedClass(Author.class)
-                            .addAnnotatedClass(Borrower.class)
+                            .addAnnotatedClass(Book.class)
+                            .addAnnotatedClass(Members.class)
                             .addAnnotatedClass(Due.class);
 
             ServiceRegistry serviceRegistry =
@@ -35,7 +35,7 @@ public class Hibernate {
         }
     }
 
-    //Getter to retrieve the session factory object which is responsible to connect the data base
+    //Getter to retrieve the session factory object which is responsible to connect the database
     public static  SessionFactory getSessionFactory(){
         return sessionFactory;
     }

@@ -5,11 +5,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.*;
 
+import java.lang.reflect.Member;
+
 import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BorrowerTest {
 
-    Borrower borrow=new Borrower();
+    Members borrow=new Members();
     Session session;
     @BeforeAll
     public void setUp() {
@@ -21,11 +23,11 @@ class BorrowerTest {
     @Test
     public void borrowerTest(){
         try{
-            borrow.setBorrowerId(20);
-            borrow.setAddressOfBorrower("Nehru Nagar,Coimbatore");
-            borrow.setNameOfBorrower("Dharani SK");
-            borrow.setAdhaarNumber("3503 9335 6451");
-            borrow.setAgeOfBorrower(21);
+//            borrow.setBorrowerId(20);
+//            borrow.setAddressOfBorrower("Nehru Nagar,Coimbatore");
+//            borrow.setNameOfBorrower("Dharani SK");
+//            borrow.setAdhaarNumber("3503 9335 6451");
+//            borrow.setAgeOfBorrower(21);
         }
         catch(Throwable e){
             throw new ExceptionInInitializerError(e);

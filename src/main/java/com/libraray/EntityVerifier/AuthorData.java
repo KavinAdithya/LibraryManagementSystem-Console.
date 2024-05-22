@@ -3,7 +3,9 @@ package com.libraray.EntityVerifier;
 import com.libraray.ApplicationCRUD.InsertionData;
 import com.libraray.entity.Author;
 import com.libraray.entity.Book;
+import com.libraray.interFace.AuthorVerifier;
 import com.libraray.interFace.LibraryException;
+import com.libraray.interFace.Validate;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
     * this class is responsible to check the data is accurate and then only it will persist in database
     * To maintain the database data consistency it acts as an interface
  */
-public class AuthorData {
+public class AuthorData implements AuthorVerifier {
     private final Author author;
 
     private final Validate valid ;
@@ -21,7 +23,7 @@ public class AuthorData {
     public AuthorData(Author author){
         this.author = author;
         this.books = author.getBooks();
-        this.valid = new Validate(author.getPassWord());
+        this.valid = new Validates(author.getPassWord());
         System.out.println(author);
     }
 

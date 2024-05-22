@@ -35,15 +35,18 @@ public class Book {
     private int availabilityNumber;
 
     @Column(name = "fine_amount")
-    private double fineAmount;
+    private double profit;
+
+    @Column(name = "cost_of_book")
+    private double costOfBook;
 
     //total amount generated
-    public double getFineAmount() {
-        return fineAmount;
+    public double getAmount() {
+        return profit;
     }
 
-    public void setFineAmount(double fineAmount) {
-        this.fineAmount = fineAmount;
+    public void setAmount(double profit) {
+        this.profit = profit;
     }
 
     //Book_Id
@@ -109,7 +112,7 @@ public class Book {
                 ", edition='" + edition + '\'' +
                 ", launchDate=" + launchDate +
                 ", availabilityNumber=" + availabilityNumber +
-                ", fineAmount=" + fineAmount +
+                ", fineAmount=" + profit +
                 '}';
     }
 

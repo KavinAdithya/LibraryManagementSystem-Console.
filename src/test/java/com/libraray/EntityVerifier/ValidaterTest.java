@@ -1,6 +1,7 @@
 package com.libraray.EntityVerifier;
 
 import com.libraray.interFace.LibraryException;
+import com.libraray.interFace.Validate;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +10,7 @@ class ValidaterTest {
 
     @Test
     void nameValidate() throws Exception {
-        Validate validater = new Validate(null);
+        Validates validater = new Validates(null);
 
       try{
           validater.nameValidate("                                         Kavin     Adithya     Dharani    ");

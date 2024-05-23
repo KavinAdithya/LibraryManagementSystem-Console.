@@ -10,9 +10,23 @@ import java.util.List;
 public class BookData implements BookVerifier {
     private final Book book;
     private final InsertionData persist = new InsertionData();
+
     //parameterized  constructor used to instantiate the book object
-    public BookData(Book book){
+    public BookData(Book book) throws ObjectCreationException{
+        if(!checkDataIsFilled(book)){
+            book = null;
+            throw new ObjectCreationException("Failed to instantiate it .. due to in consistent book data..");
+        }
         this.book = book;
+
+    }
+
+    private boolean checkDataIsFilled(Book book) {
+        return book.getAmount() != 0.00 &&
+                book.getName() != null &&
+                book.getEdition() != null &&
+                book.getAuthor() != null &&
+                book.getLaunchDate() != null ;
     }
 
     //Method which is responsible to verify allocated id for this book is correct or wrong

@@ -20,13 +20,33 @@ public class AuthorData implements AuthorVerifier {
     private final InsertionData persist = new InsertionData();
     private final List<Book> books ;
 
-    public AuthorData(Author author){
-        this.author = author;
+    //parameterized Constructor
+    public AuthorData(Author author) throws ObjectCreationException{
+        Author author1;
+        author1 = author;
         this.books = author.getBooks();
+        if(!checkDataIsFilled(author)) {
+            author1 = null;
+            throw new ObjectCreationException("Failed to instantiate it .. due to in consistent author data..");
+        }
+        this.author = author1;
         this.valid = new Validates(author.getPassWord());
         System.out.println(author);
     }
 
+    //This method is responsible to check the author attributes are consistent
+    private boolean checkDataIsFilled(Author author) {
+        return author.getAuthorName() != null &&
+                author.getPassWord() != null &&
+                author.getBooks() != null &&
+                author.getCountryName() != null &&
+                author.getAgeOfAuthor() != 0 &&
+                author.getCountOfBook() != 0;
+    }
+
+
+    //it is a central method for
+    // checking author data has been valid after the object has mandatory field values check
     public void checking() throws LibraryException{
         try{
             valid.checkUser();
@@ -52,6 +72,7 @@ public class AuthorData implements AuthorVerifier {
             throw new LibraryException("Author Data is not consistent...\n Data Has been failed to persist..."+e.getMessage());
         }
     }
+
     //checking the books does not exist
     private boolean checkBook() throws LibraryException{
         try{
@@ -67,5 +88,6 @@ public class AuthorData implements AuthorVerifier {
             throw new LibraryException(e.getMessage());
         }
     }
+
 
 }

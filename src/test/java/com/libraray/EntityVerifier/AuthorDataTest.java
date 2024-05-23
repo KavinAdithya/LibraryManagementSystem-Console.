@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AuthorDataTest {
 
     @Test
-    void checking() {
+    void checking() throws ObjectCreationException {
         Author author = new Author();
         Book book1 = new Book();
         Book book2 = new Book();

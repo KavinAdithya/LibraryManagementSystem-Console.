@@ -16,7 +16,7 @@ class BookDataTest {
 
     BookVerifier bookVerifier;
     @BeforeAll
-     void data(){
+     void data() throws ObjectCreationException {
         book.setId(1);
         book.setName("Java Programming..");
         book.setAuthor(null);

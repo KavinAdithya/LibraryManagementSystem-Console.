@@ -33,7 +33,7 @@ public class InsertionData {
             return true;
         }
         catch(Exception e){
-            e.fillInStackTrace();
+            e.printStackTrace();
             return false;
         }
     }
@@ -63,7 +63,7 @@ public class InsertionData {
             return true;
         }
         catch(Exception e){
-            e.fillInStackTrace();
+            e.printStackTrace();
             return false;
         }
     }
@@ -77,7 +77,7 @@ public class InsertionData {
             return persistObject;
         }
         catch(Exception e){
-            e.fillInStackTrace();
+            e.printStackTrace();
             return null;
         }
     }
@@ -91,7 +91,7 @@ public class InsertionData {
             return persistObject;
         }
         catch(Exception e){
-            e.fillInStackTrace();
+            e.printStackTrace();
             return null;
         }
     }
@@ -106,7 +106,7 @@ public class InsertionData {
             transaction.commit();
             return listOfObjects;
         }catch(Exception e){
-            e.fillInStackTrace();
+            e.printStackTrace();
             return null;
         }
     }
@@ -120,7 +120,7 @@ public class InsertionData {
             transaction.commit();
             return listOfObjects;
         }catch(Exception e){
-            e.fillInStackTrace();
+            e.printStackTrace();
             return null;
         }
     }
@@ -135,6 +135,7 @@ public class InsertionData {
             transaction.commit();
             return true;
         }catch(Exception e){
+            e.printStackTrace();
            return false;
         }
     }
@@ -144,6 +145,7 @@ public class InsertionData {
             Hibernate.shutDownSessionFactory();
             return false;
         }catch(Exception e){
+            e.printStackTrace();
             return false;
         }
     }

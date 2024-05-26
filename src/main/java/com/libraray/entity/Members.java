@@ -24,7 +24,7 @@ public class Members {
     private String addressOfMember;
 
     @JoinColumn(name = "login")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
     @Column(name = "fine_allowed")

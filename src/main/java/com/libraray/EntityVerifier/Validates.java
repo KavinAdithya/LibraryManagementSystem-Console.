@@ -74,25 +74,4 @@ public class Validates extends LoginDataManager implements com.libraray.interFac
         return age > 0 && age < 110;
     }
 
-    //check the Aadhaar is valid or not
-    public String checkAadhaar(String aadhaarNumber){
-        if(aadhaarNumber.length() != 12)
-            return null;
-
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for(int k = 0; k < 12; k++){
-            char character = aadhaarNumber.charAt(k);
-            if(k == 4 || k == 8)
-                stringBuilder.append(' ');
-            if(character >= '0' && character <= '9')
-                stringBuilder.append(character);
-            else
-                return null;
-        }
-
-        return stringBuilder.toString();
-
-
-    }
 }

@@ -1,10 +1,10 @@
 package com.libraray.EntityVerifier;
 
 import com.libraray.ApplicationCRUD.InsertionData;
-import com.libraray.entity.Book;
 import com.libraray.entity.Members;
 import com.libraray.interFace.LibraryException;
 import com.libraray.interFace.MembersVerifier;
+import com.libraray.interFace.ObjectCreationException;
 import com.libraray.interFace.Validate;
 
 import java.util.List;
@@ -19,9 +19,9 @@ public class MembersData implements MembersVerifier {
     private final InsertionData persist = new InsertionData();
 
     //Parameterized Constructor
-    MembersData(Members members) throws ObjectCreationException{
+    MembersData(Members members) throws ObjectCreationException {
         if(!isFilledData(members)){
-            members = null;
+            this.members = null;
             throw new ObjectCreationException("Failed to instantiate it .. due to in consistent Members data..");
         }
         this.members = members;
@@ -31,14 +31,24 @@ public class MembersData implements MembersVerifier {
 
     //Driver to manage the members data
     public boolean manageMemberData() throws LibraryException {
+
         validate.nameValidate(members.getNameOfMember());
         validate.ageInvoker(members.getAgeOfMember());
         validate.checkUser();
         validate.checkPassword();
-        aadhaarVerifier();
-        amountManager();
-        return false;
+
+        return aadhaarVerifier() && !checkEntityExists();
     }
+
+    //Checking the Object Already Exists ... Checking based ob object name and aadhaar name
+    private boolean checkEntityExists(){
+        String query = "from Members where nameOfMember = '" + members.getNameOfMember() + "' and aadhaarNumber = '" + members.getAadhaarNumber() + "'";
+
+        List<Members> members1 = persist.getDataHQL(query, Members.class);
+
+        return members1.isEmpty();
+    }
+
 
     //Checking the object data is consistent
     private boolean isFilledData(Members members) {
@@ -75,11 +85,13 @@ public class MembersData implements MembersVerifier {
     //Amount Manager provides the feature of updating the total amount paid amount and pending payments
     @Override
     public boolean amountManager() {
-        List<Members> members1 = persist.getDataHQL("from Book where name = '"
-                + members.getNameOfMember() + "' and aadhaarNumber = '" + members.getAadhaarNumber() +
-                "'", Members.class);
-        if(members1 == null)
+        String query = "from Members where nameOfMember = '" + members.getNameOfMember() + "' and aadhaarNumber = '" + members.getAadhaarNumber() + "'";
+
+        List<Members> members1 = persist.getDataHQL(query, Members.class);
+
+        if(members1.isEmpty())
             return false;
+
         Members member = members1.get(0);
 
         member.setTotalFineAllowed(member.getTotalFineAllowed() + this.members.getTotalFineAllowed());

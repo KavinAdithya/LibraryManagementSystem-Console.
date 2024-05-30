@@ -124,10 +124,11 @@ public class Members {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Members members)) return false;
-        return  getAgeOfMember() == members.getAgeOfMember() &&
-                Objects.equals(getNameOfMember(), members.getNameOfMember()) &&
-                Objects.equals(getAadhaarNumber(), members.getAadhaarNumber()) &&
-                Objects.equals(getAddressOfMember(), members.getAddressOfMember()) &&
-                Objects.equals(getUser(), members.getUser());
+        return getMemberId() == members.getMemberId() && getAgeOfMember() == members.getAgeOfMember() && Double.compare(getTotalFineAllowed(), members.getTotalFineAllowed()) == 0 && Double.compare(getFinePaid(), members.getFinePaid()) == 0 && Objects.equals(getNameOfMember(), members.getNameOfMember()) && Objects.equals(getAadhaarNumber(), members.getAadhaarNumber()) && Objects.equals(getAddressOfMember(), members.getAddressOfMember()) && Objects.equals(getUser(), members.getUser());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMemberId(), getNameOfMember(), getAgeOfMember(), getAadhaarNumber(), getAddressOfMember(), getUser(), getTotalFineAllowed(), getFinePaid());
     }
 }

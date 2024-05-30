@@ -3,7 +3,7 @@ package com.libraray.EntityVerifier;
 import com.libraray.ApplicationCRUD.InsertionData;
 import com.libraray.entity.Book;
 import com.libraray.interFace.BookVerifier;
-import com.libraray.interFace.DataLibraryException;
+import com.libraray.interFace.ObjectCreationException;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public class BookData implements BookVerifier {
     private final InsertionData persist = new InsertionData();
 
     //parameterized  constructor used to instantiate the book object
-    public BookData(Book book) throws ObjectCreationException{
+    public BookData(Book book) throws ObjectCreationException {
         if(!checkDataIsFilled(book)){
             book = null;
             throw new ObjectCreationException("Failed to instantiate it .. due to in consistent book data..");

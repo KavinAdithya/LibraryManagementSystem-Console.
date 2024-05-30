@@ -3,6 +3,7 @@ package com.libraray.EntityVerifier;
 import com.libraray.ApplicationCRUD.InsertionData;
 import com.libraray.entity.Book;
 import com.libraray.interFace.BookVerifier;
+import com.libraray.interFace.ObjectCreationException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

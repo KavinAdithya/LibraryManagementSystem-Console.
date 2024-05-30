@@ -5,13 +5,12 @@ import com.libraray.entity.Author;
 import com.libraray.entity.Book;
 import com.libraray.entity.User;
 import com.libraray.interFace.LibraryException;
+import com.libraray.interFace.ObjectCreationException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class AuthorDataTest {
 

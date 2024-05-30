@@ -104,6 +104,10 @@ public class InsertionData {
             Query<T> queryHQl = session.createQuery(query,className);
             List<T> listOfObjects = queryHQl.getResultList();
             transaction.commit();
+
+            for(T object : listOfObjects)
+                session.detach(object);
+
             return listOfObjects;
         }catch(Exception e){
             e.printStackTrace();

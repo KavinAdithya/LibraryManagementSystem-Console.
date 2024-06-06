@@ -63,13 +63,10 @@ public class BookData implements BookVerifier {
 
         int id = book.getId();
         Book book = persist.getDataEager(Book.class, id);
-        //persist.shutDownFactory();
-
-        InsertionData persist1 = new InsertionData();
         if(this.book.equals(book)){
             this.book.setAmount(
                             book.getAmount() +
-                            this.book.getAmount() + 1000);
+                            this.book.getAmount());
             return persist.updateData(this.book);
         }
         return false;

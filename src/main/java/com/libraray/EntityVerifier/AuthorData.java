@@ -7,8 +7,8 @@ import com.libraray.interFace.AuthorVerifier;
 import com.libraray.interFace.LibraryException;
 import com.libraray.interFace.ObjectCreationException;
 import com.libraray.interFace.Validate;
-
 import java.util.List;
+
 
 /*
     * this class is responsible to check the data is accurate and then only it will persist in database
@@ -21,6 +21,7 @@ public class AuthorData implements AuthorVerifier {
     private final InsertionData persist = new InsertionData();
     private final List<Book> books ;
 
+
     //parameterized Constructor
     public AuthorData(Author author) throws ObjectCreationException {
         Author author1;
@@ -32,7 +33,6 @@ public class AuthorData implements AuthorVerifier {
         }
         this.author = author1;
         this.valid = new Validates(author.getPassWord());
-        System.out.println(author);
     }
 
     //This method is responsible to check the author attributes are consistent
@@ -45,6 +45,14 @@ public class AuthorData implements AuthorVerifier {
                 author.getCountOfBook() != 0;
     }
 
+    //Checking the Object Already Exists ... Checking based ob object name and aadhaar name
+    private boolean checkEntityExists(){
+        String query = "from Members where authorName = '" + author.getAuthorName() + "'";
+
+        List<Author> members1 = persist.getDataHQL(query, Author.class);
+
+        return members1.isEmpty();
+    }
 
     //it is a central method for
     // checking author data has been valid after the object has mandatory field values check
@@ -62,7 +70,7 @@ public class AuthorData implements AuthorVerifier {
             valid.ageInvoker(author.getAgeOfAuthor());
             System.out.println("Valid Author Age...");
 
-            if(checkBook())
+            if(checkBook() || checkEntityExists())
                 System.out.println("Verified!!! Author has valid authorized to use this books...");
 
             author.setCountOfBook(books.size());
@@ -89,6 +97,4 @@ public class AuthorData implements AuthorVerifier {
             throw new LibraryException(e.getMessage());
         }
     }
-
-
 }

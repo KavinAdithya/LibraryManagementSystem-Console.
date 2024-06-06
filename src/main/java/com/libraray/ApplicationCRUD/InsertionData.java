@@ -2,7 +2,7 @@ package com.libraray.ApplicationCRUD;
 
 import com.libraray.dataBase.Hibernate;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 
@@ -11,24 +11,24 @@ import java.util.List;
 //Responsible for CRUD operation in database
 @SuppressWarnings("deprecation")
 public class InsertionData {
-    private final Session session = Hibernate.getSessionFactory().openSession();
 
-    private final Transaction transaction = session.getTransaction();
+
+
 
     /*
         *Method which is responsible to insert tha data into database Entity does not matter
         * because we used the type as generic
      */
 
-    public Session getSession() {
-        return session;
-    }
+
 
     public <T>boolean insertData(T persistObject){
         try {
-            transaction.begin();
+            Session session = Hibernate.getSessionFactory().openSession();
+
+            session.getTransaction().begin();
             session.persist(persistObject);
-            transaction.commit();
+            session.getTransaction().commit();
             session.detach(persistObject);
             return true;
         }
@@ -41,9 +41,11 @@ public class InsertionData {
     //Method responsible to update the existing data into thw database
     public <T>boolean updateData(T persistObject){
         try{
-            transaction.begin();
+            Session session = Hibernate.getSessionFactory().openSession();
+
+            session.getTransaction().begin();
             session.update(persistObject);
-            transaction.commit();
+            session.getTransaction().commit();
             session.detach(persistObject);
             return true;
         }
@@ -56,9 +58,11 @@ public class InsertionData {
     //method which is responsible to delete the entity from database
     public <T>boolean deleteData(T persistObject){
         try{
-            transaction.begin();
+            Session session = Hibernate.getSessionFactory().openSession();
+
+            session.getTransaction().begin();
             session.delete(persistObject);
-            transaction.commit();
+            session.getTransaction().commit();
             session.detach(persistObject);
             return true;
         }
@@ -71,9 +75,11 @@ public class InsertionData {
     //method which is responsible for retrieve entity from database
     public <T>T getData(Class<T> className,int primaryKey){
         try{
-            transaction.begin();
+            Session session = Hibernate.getSessionFactory().openSession();
+
+            session.getTransaction().begin();
             T persistObject = session.load(className,primaryKey);
-            transaction.commit();
+            session.getTransaction().commit();
             return persistObject;
         }
         catch(Exception e){
@@ -84,9 +90,11 @@ public class InsertionData {
 
     public <T>T getDataEager(Class<T> className,int primaryKey){
         try{
-            transaction.begin();
+            Session session = Hibernate.getSessionFactory().openSession();
+
+            session.getTransaction().begin();
             T persistObject = session.get(className,primaryKey);
-            transaction.commit();
+            session.getTransaction().commit();
             session.detach(persistObject);
             return persistObject;
         }
@@ -100,10 +108,12 @@ public class InsertionData {
     //retrieve data from database query given by the user or developer which means HQL language
     public <T> List<T> getDataHQL(String query,Class<T> className){
         try{
-            transaction.begin();
+            Session session = Hibernate.getSessionFactory().openSession();
+
+            session.getTransaction().begin();
             Query<T> queryHQl = session.createQuery(query,className);
             List<T> listOfObjects = queryHQl.getResultList();
-            transaction.commit();
+            session.getTransaction().commit();
 
             for(T object : listOfObjects)
                 session.detach(object);
@@ -118,10 +128,12 @@ public class InsertionData {
     //retrieve data from database query given by user or developer in SQL syntax
     public <T>List<T> getDataSQL(String query,Class<T> className) {
         try{
-            transaction.begin();
+            Session session = Hibernate.getSessionFactory().openSession();
+
+            session.getTransaction().begin();
             NativeQuery<T> querySQL = session.createNativeQuery(query,className);
             List<T> listOfObjects = querySQL.getResultList();
-            transaction.commit();
+            session.getTransaction().commit();
             return listOfObjects;
         }catch(Exception e){
             e.printStackTrace();
@@ -131,12 +143,14 @@ public class InsertionData {
 
     public boolean insertListEntity(List<?> persistObjects)  {
         try{
-            transaction.begin();
+            Session session = Hibernate.getSessionFactory().openSession();
+
+            session.getTransaction().begin();
 
             for(Object persist : persistObjects)
                 session.persist(persist);
 
-            transaction.commit();
+            session.getTransaction().commit();
             return true;
         }catch(Exception e){
             e.printStackTrace();

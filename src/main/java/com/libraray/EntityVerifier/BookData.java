@@ -4,7 +4,6 @@ import com.libraray.ApplicationCRUD.InsertionData;
 import com.libraray.entity.Book;
 import com.libraray.interFace.BookVerifier;
 import com.libraray.interFace.ObjectCreationException;
-
 import java.util.List;
 
 public class BookData implements BookVerifier {

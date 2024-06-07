@@ -3,6 +3,11 @@ package com.libraray.EntityVerifier;
 import com.libraray.entity.User;
 import com.libraray.interFace.LibraryException;
 
+/*
+* This will validate the given name is valid and also removes extra space , check the name contains only valid characters
+* check the age
+ */
+
 public class Validates extends LoginDataManager implements com.libraray.interFace.Validate {
     private String name;
 

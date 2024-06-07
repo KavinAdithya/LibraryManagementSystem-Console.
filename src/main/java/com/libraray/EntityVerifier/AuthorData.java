@@ -9,18 +9,22 @@ import com.libraray.interFace.ObjectCreationException;
 import com.libraray.interFace.Validate;
 import java.util.List;
 
-
 /*
-    * this class is responsible to check the data is accurate and then only it will persist in database
-    * To maintain the database data consistency it acts as an interface
+    * It implements Author verifier interface
+    * This class is responsible to check the data is accurate and then only it will persist in database.
+    * To maintain the database data consistency it acts as an interface.
+    * Checks the author object does not null during object initialization.
+    * Checks the author already exists based on author name.
+    * Checking author book does not exist already.
+    * Driver for this class is checking -> userName valid, password valid, age valid, name valid and setting book counts
  */
+
 public class AuthorData implements AuthorVerifier {
     private final Author author;
 
     private final Validate valid ;
     private final InsertionData persist = new InsertionData();
     private final List<Book> books ;
-
 
     //parameterized Constructor
     public AuthorData(Author author) throws ObjectCreationException {
@@ -45,7 +49,7 @@ public class AuthorData implements AuthorVerifier {
                 author.getCountOfBook() != 0;
     }
 
-    //Checking the Object Already Exists ... Checking based ob object name and aadhaar name
+    //Checking the Object Already Exists ... Checking based on author name
     private boolean checkEntityExists(){
         String query = "from Members where authorName = '" + author.getAuthorName() + "'";
 
@@ -54,6 +58,7 @@ public class AuthorData implements AuthorVerifier {
         return members1.isEmpty();
     }
 
+    //Driver for this class
     //it is a central method for
     // checking author data has been valid after the object has mandatory field values check
     public void checking() throws LibraryException{

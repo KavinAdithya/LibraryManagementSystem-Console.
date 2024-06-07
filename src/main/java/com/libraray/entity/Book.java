@@ -1,7 +1,10 @@
 package com.libraray.entity;
 
 //Annotations
-import jakarta.persistence.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import org.hibernate.annotations.Cache;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -13,6 +16,8 @@ import java.util.Objects;
  */
 
 @Entity
+@Cacheable(value = true)
+@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "Books")
 public class Book {
 

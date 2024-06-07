@@ -3,8 +3,12 @@ package com.libraray.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
+@Cacheable(value = true)
+@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name="Book_Distribution")
 public class Due {
 

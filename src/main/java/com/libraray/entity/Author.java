@@ -1,10 +1,15 @@
 package com.libraray.entity;
 
-import jakarta.persistence.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
+import org.hibernate.annotations.Cache;
 
 @Entity
+@Cacheable(value = true)
+@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "Authors")
 public class Author{
     @Column(name = "author_name")

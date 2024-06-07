@@ -1,7 +1,11 @@
 package com.libraray.entity;
 
-import jakarta.persistence.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import javax.persistence.*;
 @Entity
+@Cacheable(value = true)
+@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name="Security")
 public class User {
     @Id

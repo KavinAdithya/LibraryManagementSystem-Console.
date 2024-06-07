@@ -1,9 +1,13 @@
 package com.libraray.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Objects;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
+@Cacheable(value = true)
+@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "customer_details")
 public class Members {
     @Id

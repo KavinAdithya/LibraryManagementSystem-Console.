@@ -17,6 +17,7 @@ import java.util.List;
     * Checks the author already exists based on author name.
     * Checking author book does not exist already.
     * Driver for this class is checking -> userName valid, password valid, age valid, name valid and setting book counts
+    * At last all the condition satisfy, and then it will persist the author data into database.
  */
 
 public class AuthorData implements AuthorVerifier {
@@ -31,10 +32,10 @@ public class AuthorData implements AuthorVerifier {
         Author author1;
         author1 = author;
         this.books = author.getBooks();
-        if(!checkDataIsFilled(author)) {
-            author1 = null;
+
+        if(!checkDataIsFilled(author))
             throw new ObjectCreationException("Failed to instantiate it .. due to in consistent author data..");
-        }
+
         this.author = author1;
         this.valid = new Validates(author.getPassWord());
     }
@@ -93,7 +94,7 @@ public class AuthorData implements AuthorVerifier {
             if(books == null)
                 throw new LibraryException("Author Must Has Books .. then only we can persist the author information");
             for(Book book : books){
-                List<Book> book1 = persist.getDataHQL("from Book where name = '"+book.getName()+"'", Book.class);
+                List<Book> book1 = persist.getDataHQL("from Book where name = '" + book.getName() + "'", Book.class);
                 if(book1 != null)
                     throw new LibraryException("Author And Book Already Exists...");
             }

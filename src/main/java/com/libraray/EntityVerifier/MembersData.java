@@ -9,8 +9,19 @@ import com.libraray.interFace.Validate;
 
 import java.util.List;
 
+/*
+    * It implements MembersVerifier interface.
+    * During Object Initialization it will check the given data is not null.
+    * It has Driver mode manageMemberData
+            * name validate
+            * Age Invoker
+            * check User
+            * check password
+    *It checks Whether the given Member is already Exists or Not.
+    * It will verify the given aadhaar is valid.if valid it will split into 3 parts separated by space.
+    * amount manager method manages the fine amount paid and total remaining fine amount.
+ */
 
-//This class acts  as interface between the interface and database  to persist the members data into database
 public class MembersData implements MembersVerifier {
 
     private final Members members ;
@@ -69,7 +80,7 @@ public class MembersData implements MembersVerifier {
 
         for(char character : members.getAadhaarNumber().toCharArray()){
             int number = character - '0';
-            //System.out.println(number);
+
             if(!(number >= 0 && number <= 9))
                 return false;
             if(k == 4 || k == 8)

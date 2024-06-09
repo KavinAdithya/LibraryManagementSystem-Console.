@@ -24,7 +24,7 @@
         <property name="show_sql">true</property>
 
         <!--how the hibernate create tables or update tables-->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
 
         <!--second level caching-->
         <property name="hibernate.cache.use_second_level_cache">true</property>

@@ -4,12 +4,14 @@ import com.libraray.ApplicationCRUD.InsertionData;
 import com.libraray.entity.Author;
 import com.libraray.entity.Book;
 import com.libraray.entity.User;
+import com.libraray.interFace.AuthorVerifier;
 import com.libraray.interFace.LibraryException;
 import com.libraray.interFace.ObjectCreationException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 class AuthorDataTest {
@@ -61,4 +63,36 @@ class AuthorDataTest {
             System.out.println(e.getMessage());
         }
     }
+
+    @Test
+    void testAuthor(){
+        Book book = new Book();
+        book.setName("C programming");
+        book.setAmount(2000.0);
+        book.setEdition("First Edition");
+        book.setAvailabilityNumber(29);
+        book.setLaunchDate(LocalDate.of(1972, 3, 7));
+
+
+        User user = new User();
+        user.setUserName("Kavin_Adithya");
+        user.setPassword("KavinDharani@3");
+
+        Author author = new Author();
+        author.setAuthorName("Dennis Ritche");
+        author.setAgeOfAuthor(74);
+        author.setCountryName("USA");
+        author.setPassWord(user);
+        author.setBooks(List.of(book));
+        book.setAuthor(author);
+
+        try {
+            AuthorVerifier authorVerifier = new AuthorData(author);
+
+            authorVerifier.checking();
+        } catch (ObjectCreationException | LibraryException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

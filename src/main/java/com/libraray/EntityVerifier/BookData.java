@@ -6,6 +6,15 @@ import com.libraray.interFace.BookVerifier;
 import com.libraray.interFace.ObjectCreationException;
 import java.util.List;
 
+/*
+    * It implements BookVerifier Interface.
+    * It checks whether the Book data is consistent in terms of null.
+    * It will check whether the given book id is unique.
+    * It will check the book does exist or not.
+    * It will check the availability of book is positive.
+    * It will update the amount of book by new fine amount + old amount.
+ */
+
 public class BookData implements BookVerifier {
     private final Book book;
     private final InsertionData persist = new InsertionData();
@@ -36,7 +45,8 @@ public class BookData implements BookVerifier {
 
     /*
         *This method is responsible whether the given book is already
-        * exists or not returns boolean value as a result
+        * exists or not returns boolean value as a result.
+        *
      */
     @Override
     public boolean bookExists() {
@@ -44,8 +54,7 @@ public class BookData implements BookVerifier {
                 book.getName() + "' AND edition = '" +
                 book.getEdition() + "'";
         List<Book> books = persist.getDataHQL(query, Book.class);
-        for(Book b : books)
-            System.out.println(b);
+
         return  persist.getDataHQL(query, Book.class).isEmpty();
     }
 

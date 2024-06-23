@@ -11,30 +11,30 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(name = "customer_details")
 public class Members {
     @Id
-    @Column(name = "Member_ID")
+    @Column(name = "MemberID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int memberId;
 
-    @Column(name = "Member_name")
+    @Column(name = "MemberName")
     private String nameOfMember;
 
-    @Column(name = "age_of_borrower")
+    @Column(name = "AgeOfBorrower")
     private int ageOfMember;
 
-    @Column(name = "aadhaar_Number")
+    @Column(name = "AadhaarNumber")
     private String aadhaarNumber;
 
-    @Column(name = "address_of_member")
+    @Column(name = "AddressOfMember")
     private String addressOfMember;
 
-    @JoinColumn(name = "login")
+    @JoinColumn(name = "Login")
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
-    @Column(name = "fine_allowed")
+    @Column(name = "FineAllowed")
     private double totalFineAllowed = 0.0;
 
-    @Column(name = "fine_paid")
+    @Column(name = "FinePaid")
     private double finePaid = 0.0;
 
 

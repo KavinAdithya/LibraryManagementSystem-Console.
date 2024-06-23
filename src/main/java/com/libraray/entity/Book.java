@@ -22,27 +22,27 @@ import java.util.Objects;
 public class Book {
 
     @Id
-    @Column(name = "Book_ID")
+    @Column(name = "BookID")
     private int Id;
 
-    @Column(name = "Book_Name")
+    @Column(name = "BookName")
     private String name;
 
     @ManyToOne
     private Author author;
 
-    @Column(name = "Book_Edition")
+    @Column(name = "BookEdition")
     private String edition;
 
-    @Column(name = "Book_launched")
+    @Column(name = "BookLaunched")
     private LocalDate launchDate;
-    @Column(name = "Book_status")
+    @Column(name = "BookStatus")
     private int availabilityNumber;
 
-    @Column(name = "fine_amount")
+    @Column(name = "FineAmount")
     private double profit;
 
-    @Column(name = "cost_of_book")
+    @Column(name = "CostOfBook")
     private double costOfBook;
 
     //total amount generated

@@ -9,25 +9,25 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable(value = true)
 @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
-@Table(name="Book_Distribution")
+@Table(name="BookDistribution")
 public class Due {
 
     @EmbeddedId
     private CompositeBookAuthor compositeBookAuthor;
 
-    @Column(name="Date_Of_Distribution")
+    @Column(name="DateOfDistribution")
     private LocalDate dateDistributed;
 
-    @Column(name="Due_Date")
+    @Column(name="DueDate")
     private LocalDate dueDate;
 
-    @Column(name="returned_date")
+    @Column(name="ReturnedDate")
     private LocalDate returnDate;
 
-    @Column(name = "late_submission_days")
+    @Column(name = "LateSubmissionDays")
     private int noOfDays;
 
-    @Column(name="fine_generated")
+    @Column(name="FineGenerated")
     private double fineAmount;
 
     //No of days late submission

@@ -75,15 +75,16 @@ class AuthorDataTest {
 
 
         User user = new User();
-        user.setUserName("Kavin_Adithya");
+        user.setUserName("Kevin_Adithya");
         user.setPassword("KavinDharani@3");
 
         Author author = new Author();
-        author.setAuthorName("Dennis Ritche");
+        author.setAuthorName("Dennis Riche");
         author.setAgeOfAuthor(74);
         author.setCountryName("USA");
         author.setPassWord(user);
         author.setBooks(List.of(book));
+        author.setCountOfBook(1);
         book.setAuthor(author);
 
         try {

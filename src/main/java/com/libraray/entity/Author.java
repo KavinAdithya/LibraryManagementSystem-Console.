@@ -12,25 +12,25 @@ import org.hibernate.annotations.Cache;
 @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "Authors")
 public class Author{
-    @Column(name = "author_name")
+    @Column(name = "AuthorName")
     private String authorName;
 
     @Id
-    @Column(name = "author_id")
+    @Column(name = "AuthorId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int authorId;
 
-    @Column(name = "Number_Of_Books")
+    @Column(name = "NumberOfBooks")
     private int countOfBook;
 
-    @Column(name = "author_age")
+    @Column(name = "AuthorAge")
     private int ageOfAuthor;
 
-    @Column(name = "country_name")
+    @Column(name = "CountryName")
     private String countryName;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "login")
+    @JoinColumn(name = "Login")
     private User passWord;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
